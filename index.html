@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drizzled FryO's – Defense Trainer (Divida)</title>
+<style>
+:root{--desk:#3b2a22;--card:#fffdf6;--ink:#2b1d17;--mute:#7a665b;--pink:#f2b8c4;--rule:#cfe0ee;--red:#d9534f;--ok:#2f7d4f;--warn:#b4530b}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--desk);color:var(--ink);font:16px/1.55 'Trebuchet MS','Segoe UI',system-ui,sans-serif;min-height:100vh}
+header{padding:18px 20px 8px;color:#f6e7dd;max-width:920px;margin:auto}
+h1{margin:0;font-size:22px;font-weight:700}header p{margin:2px 0 0;color:#d2b9ab;font-size:14px}
+.bar{max-width:920px;margin:10px auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:8px 14px;background:#5a4237;color:#f6e7dd}
+button:hover{background:#6e5144}button:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+button.on{background:var(--pink);color:var(--ink);font-weight:700}
+.sp{flex:1}.seg{display:flex;gap:4px;background:#2c1e18;padding:4px;border-radius:10px}
+main{max-width:920px;margin:auto;padding:6px 20px 40px}
+.card{background:var(--card);border-radius:6px;padding:22px 24px 22px 30px;margin:12px 0;box-shadow:0 2px 0 #00000055;
+ background-image:linear-gradient(var(--red),var(--red)),repeating-linear-gradient(transparent 0 29px,var(--rule) 29px 30px);
+ background-size:100% 3px,100% 100%;background-repeat:no-repeat;background-position:0 38px,0 0}
+.card h2{margin:0 0 14px;font-size:20px}.card h3{margin:0 0 8px;font-size:15px;color:var(--mute)}
+.script p{font:17px/1.75 Georgia,'Times New Roman',serif;margin:0 0 12px}
+.script b{background:#ffe3ea;padding:0 3px;border-radius:3px}
+.bl{border-bottom:2px solid var(--ink);cursor:pointer;display:inline-block;min-width:3.2em;text-align:center;color:transparent;user-select:none}
+.bl.on{color:var(--ink);background:#ffe3ea;border-bottom-color:transparent;border-radius:3px;padding:0 3px;color:var(--ink)}
+pre.idx{font:15px/1.6 'Courier New',monospace;white-space:pre-wrap;margin:0;background:#fff8d6;border:2px dashed #d8c27a;padding:12px 14px;border-radius:6px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mini{color:var(--mute);font-size:14px}.hard{color:var(--warn);font-weight:700;font-size:13px}
+.ans{margin-top:12px;padding:12px 14px;border-left:5px solid var(--pink);background:#fff3f5;font-family:Georgia,serif;font-size:17px;line-height:1.6}
+.ans small{display:block;font:700 13px 'Trebuchet MS',sans-serif;color:var(--mute);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.fc{background:var(--card);border-radius:8px;padding:14px;min-height:92px;cursor:pointer;border:0;text-align:left;color:var(--ink);box-shadow:0 2px 0 #00000055}
+.fc:hover{background:#fff3f5}.fc .v{font:700 22px Georgia,serif;color:var(--ok)}.fc .l{font-size:14px;color:var(--mute)}
+.timer{font:700 22px 'Courier New',monospace}.tag{display:inline-block;background:#efe3da;border-radius:99px;padding:1px 10px;font-size:13px;margin-right:6px}
+progress{width:160px;height:12px}.hide{display:none}
+@media(max-width:560px){.card{padding:18px 16px 18px 20px}.script p{font-size:16px}}
+@media(prefers-reduced-motion:no-preference){.ans{animation:in .2s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body>
+<header><h1>Defense Trainer: Drizzled FryO's</h1><p>Divida's parts: Rationale, CAPEX vs OPEX, Time Horizons, Table 8, Financial Viability</p></header>
+<div class="bar"><div class="seg" id="tabs"></div><span class="sp"></span><div class="seg" id="langs"></div></div>
+<main id="app"></main>
+<script>
+const P=[
+{id:'rat',t:'Rationale',s:'Slides 6–7',
+en:[`Good day, everyone. I will now discuss the **rationale** of our study, which explains why Drizzled FryO's is **important and worth pursuing**.`,
+`First, the **need**. Research shows that **taste, cost, and convenience** influence how students choose their food (Drewnowski & Monsivais, 2020). Students also commonly purchase food during **lunch and snack periods** (Uriarte et al., 2022).`,
+`Second, the **gap**. Despite this demand, students may have **limited choices** for **affordable and appealing sweet snacks** they can buy quickly during breaks (Dahl et al., 2024).`,
+`Third, our **answer**. **Deep-Fried Oreos** are proposed as an affordable and convenient sweet snack at a **student-friendly price**. This feasibility study examines whether the **costs, pricing, and projected income** can support the business.`],
+tl:[`Good day po sa lahat. Ako po ang magdi-discuss ng **rationale** ng study namin, na nagpapaliwanag kung bakit **mahalaga at worth pursuing** ang Drizzled FryO's.`,
+`**Una, ang need.** Ayon sa research, ang **taste, cost, at convenience** ang nakaaapekto sa kung paano pumipili ng pagkain ang students (Drewnowski & Monsivais, 2020). Bumibili rin sila ng pagkain tuwing **lunch at snack periods** (Uriarte et al., 2022).`,
+`**Pangalawa, ang gap.** Kahit may demand, **limitado** ang choices ng students sa **affordable at appealing na sweet snacks** na mabilis mabili tuwing break (Dahl et al., 2024).`,
+`**Pangatlo, ang sagot namin.** Proposed namin ang **Deep-Fried Oreos** bilang affordable at convenient na sweet snack sa **student-friendly na presyo**. Tinitingnan ng feasibility study kung **kaya bang suportahan ng costs, pricing, at projected income** ang business.`],
+card:`RATIONALE: Worth it?
+NEED   taste, cost, convenience (Drewnowski 2020)
+       lunch/snack periods (Uriarte 2022)
+GAP    limited affordable sweet snacks (Dahl 2024)
+ANSWER Deep-Fried Oreos + feasibility study`},
+{id:'cx',t:'CAPEX vs OPEX',s:'Slides 18–19',
+en:[`Next, I will discuss our **cost structure**. Drizzled FryO's has two categories of costs.`,
+`The first is **Capital Expenditures, or CAPEX**. These are **one-time startup costs**, and our total is **₱2,589.00**.`,
+`The second is **Operational Expenditures, or OPEX**. These are the **recurring monthly expenses** needed to keep the business running, such as employee salaries, materials and ingredients, rent and utilities, and taxes. Our total OPEX is **₱35,072.02 per month**.`,
+`The key difference is that CAPEX is paid **once at the start**, while OPEX recurs **every month**. My groupmates will discuss each in detail in the next slides.`],
+tl:[`Susunod po, ang **cost structure** namin. Dalawa po ang klase ng costs ng Drizzled FryO's.`,
+`Ang una ay ang **CAPEX o Capital Expenditures**. Ito ay **one-time startup costs**, at ang total namin ay **₱2,589.00**.`,
+`Ang pangalawa ay ang **OPEX o Operational Expenditures**. Ito ang **recurring monthly expenses** para tuloy-tuloy ang operations, tulad ng salaries, ingredients, rent at utilities, at taxes. Ang total OPEX namin ay **₱35,072.02 kada buwan**.`,
+`Ang pinakamalaking pagkakaiba: ang CAPEX ay **isang beses lang binabayaran sa simula**, habang ang OPEX ay **buwan-buwan**. Ang mga groupmates ko po ang magdi-discuss ng bawat isa sa susunod na slides.`],
+card:`CAPEX = one-time startup   ₱2,589.00
+OPEX  = recurring monthly  ₱35,072.02
+CAPEX once / OPEX every month`},
+{id:'th',t:'Time Horizons',s:'Slides 35–36',
+en:[`Now I will present our **time-horizon financial solutions**. To give a clear projection, we converted our **sales, operating expenses, and projected income** into three standard time horizons: **weekly, monthly, and yearly**.`,
+`All conversions are based on the **projected monthly sales and operating expenses** of the business. The conversion rule is proven in **Table 8**, which I will discuss next.`],
+tl:[`Ngayon po, ang **time-horizon financial solutions**. Para malinaw ang projection, kinonvert namin ang **sales, operating expenses, at projected income** sa tatlong time horizons: **weekly, monthly, at yearly**.`,
+`Lahat ng conversions ay base sa **projected monthly sales at operating expenses** ng business. Ang proof ng conversion rule ay makikita sa **Table 8**, na susunod kong i-discuss.`],
+card:`WEEKLY → MONTHLY → YEARLY
+Base: monthly sales + expenses
+Next: Table 8 = proof`},
+{id:'t8',t:'Table 8 Proof',s:'Slides 37–38',
+en:[`Table 8 shows the proof of our conversion rule, using the **monthly sales of ₱60,000**.`,
+`**Step 1**, the daily base rate: ₱60,000 divided by 30 days equals **₱2,000 per day**.`,
+`**Step 2**, the weekly solution: ₱2,000 times 7 days equals **₱14,000 per week**.`,
+`**Step 3**, the monthly solution: our given baseline of 30 days, which is **₱60,000 per month**.`,
+`**Step 4**, the yearly solution: ₱60,000 times 12 months equals **₱720,000 per year**. Every horizon traces back to the **same monthly baseline**.`],
+tl:[`Ipinapakita ng **Table 8** ang proof ng conversion rule namin, gamit ang **monthly sales na ₱60,000**.`,
+`**Step 1**, ang daily base rate: ₱60,000 ÷ 30 = **₱2,000 per day**.`,
+`**Step 2**, ang weekly solution: ₱2,000 × 7 = **₱14,000 per week**.`,
+`**Step 3**, ang monthly solution: ang given baseline na 30 days, kaya **₱60,000 per month**.`,
+`**Step 4**, ang yearly solution: ₱60,000 × 12 = **₱720,000 per year**. Lahat ng horizons ay nababalikan sa **iisang monthly baseline**.`],
+card:`₱60,000 base
+1. ÷30 = ₱2,000/day
+2. ×7  = ₱14,000/week
+3. base = ₱60,000/month
+4. ×12 = ₱720,000/year`},
+{id:'vb',t:'Financial Viability',s:'Slides 45–46',
+en:[`Finally, the **financial viability verification summary**. Based on our projections and cost structure, Drizzled FryO's demonstrates financial viability.`,
+`The business needs a one-time CAPEX of **₱2,589.00**, and its projected monthly OPEX is **₱35,072.02**.`,
+`At **₱100.00 per box** and a target of **20 boxes per day**, projected daily sales are **₱2,000.00**. Over 30 days, projected monthly sales are **₱60,000.00**.`,
+`After deducting the monthly OPEX, projected **monthly income is ₱24,927.98**, and projected **yearly income is ₱299,135.76**.`,
+`The total **initial capital requirement is ₱37,661.02**: the ₱2,589.00 startup CAPEX plus one month of OPEX, ₱35,072.02.`,
+`Therefore, based on the **stated sales volume, pricing, and expense assumptions**, Drizzled FryO's has the potential to generate **positive operating income**. Thank you.`],
+tl:[`Panghuli po, ang **financial viability verification summary**. Base sa projections at cost structure, ang Drizzled FryO's ay nagpapakita ng **financial viability**.`,
+`Kailangan ng business ng **one-time CAPEX na ₱2,589.00**, at ang projected **monthly OPEX ay ₱35,072.02**.`,
+`Sa **₱100.00 per box** at target na **20 boxes kada araw**, ang daily sales ay **₱2,000.00**. Sa 30 days, ang **monthly sales ay ₱60,000.00**.`,
+`Kapag binawas ang monthly OPEX, ang **monthly income namin ay ₱24,927.98**, at ang **yearly income ay ₱299,135.76**.`,
+`Ang **initial capital requirement ay ₱37,661.02**: ang ₱2,589.00 na startup CAPEX plus isang buwang OPEX na ₱35,072.02.`,
+`Kaya po, base sa **stated sales volume, pricing, at expense assumptions**, may potential ang Drizzled FryO's na magkaroon ng **positive operating income**. Thank you po.`],
+card:`CAPEX ₱2,589.00 | OPEX ₱35,072.02/mo
+SALES ₱60,000 (20 × 100 × 30)
+INCOME ₱24,927.98/mo (60,000 − 35,072.02)
+       ₱299,135.76/yr
+INITIAL CAPITAL ₱37,661.02
+→ potential for positive operating income`}];
+
+const Q=[
+['rat','Why did you choose deep-fried Oreos?',`Kasi naghahanap ang students ng snack na affordable, convenient, at enjoyable. Ang Oreo ay familiar na cookie na ginawang warm, crispy, at indulgent, sa student-friendly na presyo.`,`Students look for affordable, convenient, and enjoyable snacks. Deep-Fried Oreos transform a familiar cookie into a warm, crispy, indulgent treat at a student-friendly price.`],
+['rat','What is your proof that students need this product?',`Ayon sa research: taste, cost, convenience ang nakaaapekto sa food choices (Drewnowski & Monsivais, 2020); bumibili sila tuwing lunch at snack time (Uriarte et al., 2022); kasama ang cookies at treats sa commonly purchased (Dahl et al., 2024). Wala pong sariling survey sa paper.`,`Our basis is published research: Drewnowski & Monsivais (2020), Uriarte et al. (2022), and Dahl et al. (2024). The paper does not include our own survey.`],
+['rat','Who are your competitors? Why would students buy from you?',`Hindi po na-cover ang competitor analysis sa paper. Ang edge namin: convenience (nasa harap ng National Teachers College), student-friendly na presyo, at ang drizzle at toppings.`,`A competitor analysis is not included in this paper. Our advantages are the location in front of the school, a student-friendly price, and the toppings and drizzle.`],
+['rat','Is your product healthy?',`Hindi po ito nasa scope ng study. Sweet indulgent snack ito, at ang focus ng paper ay financial feasibility.`,`Nutrition is outside the scope of this paper, which focuses on financial feasibility.`],
+['cx','What is the difference between CAPEX and OPEX?',`Ang CAPEX ay one-time startup costs, ₱2,589.00 (display stand, table, whisk, Dutch oven). Ang OPEX ay recurring monthly expenses, ₱35,072.02 (salaries, ingredients, rent, taxes).`,`CAPEX is a one-time startup cost of ₱2,589.00 for equipment and fixtures. OPEX is the recurring monthly expense of ₱35,072.02: salaries, ingredients, rent and utilities, and taxes.`],
+['cx','Why is your CAPEX so small (₱2,589.00)?',`Micro-enterprise po kami at simple ang setup. Ang pinakamalaking item ay ang Dutch oven, ₱1,660. Ang malaking cost namin ay ang OPEX.`,`As a micro-enterprise with a simple stand setup, the largest startup item is the Dutch oven at ₱1,660.00. The bulk of our costs are operating expenses.`],
+['cx','Why is the marketing budget ₱0?',`₱0.00 po ang naka-assume sa paper. Pwede itong i-revise kung kailangan ng promotion.`,`The paper assumes ₱0.00 for marketing. This can be revised if promotion is needed.`,0],
+['cx','Your materials cost is ₱16,072.02 a month, but COGS is ₱21.00 per piece. How do they fit?',`Tama po, napansin namin ang pagkakaiba. Ang ₱21.00 per piece ay unit COGS sa pricing model, at ang ₱16,072.02 ay materials line sa OPEX. Ire-review namin ang supplier quotes at ia-align ang dalawa sa revision. (20 boxes × 30 days = 600 boxes; 600 × ₱84 = ₱50,400. Huwag i-defend ang numbers, at huwag mag-imbento ng dahilan.)`,`We acknowledge the difference. The ₱21.00 per piece is the unit COGS used in the pricing model, while ₱16,072.02 is the materials line in the OPEX table. We will review our supplier quotes and align both in the revision.`,1],
+['th','How did you get ₱2,000 per day, ₱14,000 per week, and ₱720,000 per year?',`₱60,000 ÷ 30 = ₱2,000 per day. ₱2,000 × 7 = ₱14,000 per week. ₱60,000 × 12 = ₱720,000 per year.`,`₱60,000 divided by 30 days is ₱2,000 per day. Times 7 gives ₱14,000 per week, and the monthly ₱60,000 times 12 gives ₱720,000 per year.`],
+['th','Why 30 operating days? Will you really operate every day, including weekends and breaks?',`30 days po ang assumption sa Tables 7, 8, at 10 at sa summary. Sensitive ang result sa assumption na iyan: kung mas kaunti ang operating days, bababa ang monthly sales (sa 16 days: ₱32,000 sales laban sa ₱35,072.02 OPEX). Iche-check namin ito sa revision.`,`The model assumes 30 operating days. The results are sensitive to that assumption: with fewer days, monthly sales fall. We will review this in the revision.`,1],
+['t8','Table 9 uses 16 days but Table 8 uses 30. Which is correct?',`Tama po, napansin namin iyon. 30 days ang final assumption sa Tables 7, 8, at 10 at sa summary. Ang 16-day base sa Table 9 ay inconsistency na ia-align namin sa revision.`,`Thank you for noting that. The final assumption is 30 operating days, as in Tables 7, 8, and 10 and the summary. The 16-day base in Table 9 will be aligned in the revision.`,1],
+['t8','Why do you divide by 30 and multiply by 7 and 12?',`Ang monthly baseline ang basehan: ÷ 30 para sa daily, × 7 para sa weekly, × 12 para sa yearly. Sa ganito, magkakatugma ang lahat ng horizons.`,`The monthly baseline is the benchmark: divide by 30 for daily, multiply by 7 for weekly and by 12 for yearly, so every horizon is consistent.`],
+['vb','How did you compute the ₱37,661.02 initial capital?',`CAPEX na ₱2,589.00 plus isang buwang OPEX na ₱35,072.02, gamit ang PEMDAS: parentheses, multiplication (1 × OPEX), tapos addition ng CAPEX.`,`It is the CAPEX of ₱2,589.00 plus one month of OPEX of ₱35,072.02, evaluated using PEMDAS.`],
+['vb','Why only one month of OPEX?',`Para may sapat na liquidity sa startup. Isang buwan ang ginamit sa computation (1 × OPEX). Kung itanong ang "three months" sa text: wording error po iyon.`,`One month of OPEX provides liquidity during startup. The computation uses 1 × OPEX.`],
+['vb','Is 20 boxes a day realistic?',`Target po iyan base sa stated assumptions, hindi guarantee. Kung mag-iba ang sales volume, mag-iiba ang income. Ang Step 4 ng Polya ay monitoring at adjustment.`,`It is a target based on our stated assumptions, not a guarantee. If volume changes, income changes, and Polya's Step 4 provides for monitoring and adjustment.`],
+['vb','Are you sure the business will make a profit?',`Ayon sa projections, may potential magkaroon ng positive operating income, base sa 20 boxes kada araw, ₱100 per box, at 30 days: ₱60,000 − ₱35,072.02 = ₱24,927.98. Potential po, hindi certainty.`,`Based on 20 boxes per day, ₱100 per box, and 30 days, projected income is positive: ₱60,000 − ₱35,072.02 = ₱24,927.98. The paper claims potential, not certainty.`],
+['vb','Where is the owners’ pay in your ₱24,927.98?',`May ₱12,000 na employee salaries sa OPEX. Ang ₱24,927.98 ay operating income na paghahatian ng dalawang partners, 50-50.`,`OPEX includes ₱12,000.00 for employee salaries. The remaining operating income of ₱24,927.98 is shared equally by the two partners.`],
+['vb','What would you improve?',`I-aalign namin ang inconsistencies (30 vs 16 days, capital amounts, Table 11) at ire-review ang cost figures gamit ang supplier quotes.`,`We will align the inconsistent figures (operating days, capital amounts, Table 11) and verify our costs against supplier quotes.`],
+['grp','Table 11 shows ₱12,453.99 monthly, but ₱24,927.98 ÷ 2 is ₱12,463.99.',`Tama po. Ang ₱12,463.99 ang tama sa summary; ang ₱12,453.99 sa Table 11 ay typographical error. Ganoon din ang ₱879,407.28 vs ₱897,407.28 sa three years. Aayusin sa revision.`,`That is correct. ₱12,463.99 is the right computation, and the printed ₱12,453.99 will be corrected. The same applies to ₱879,407.28 versus ₱897,407.28 over three years.`,1],
+['grp','The text says ₱14,000 capital each but the tables say ₱35,000.',`Tama po, napansin namin. Ang ownership ay 50-50 sa lahat ng version; ₱35,000 each (₱70,000) ang nasa Tables 2–3, at ia-align namin ang paragraph sa revision.`,`Ownership is 50-50 in every version. Tables 2–3 show ₱35,000 each (₱70,000 total), and the paragraph will be aligned in the revision.`,1],
+['grp','How did you get the 19.05% markup and ₱100 price?',`Retail Price = Unit COGS × (1 + Markup Rate) = ₱84.00 × (1 + 0.1905) = ₱100.00.`,`Retail Selling Price = Unit COGS × (1 + Markup Rate) = ₱84.00 × (1 + 0.1905) = ₱100.00.`]];
+
+const N=[['Selling price','₱100 per box'],['Pieces per box','4'],['Target daily sales','20 boxes'],['Daily revenue','₱2,000 (20 × ₱100)'],['Weekly sales','₱14,000 (₱2,000 × 7)'],['Monthly sales','₱60,000 (₱2,000 × 30)'],['Yearly sales','₱720,000 (₱60,000 × 12)'],['CAPEX','₱2,589.00 (one-time)'],['Monthly OPEX','₱35,072.02'],['Initial capital','₱37,661.02 (2,589.00 + 35,072.02)'],['Monthly income','₱24,927.98 (60,000 − 35,072.02)'],['Yearly income','₱299,135.76'],['COGS per piece','₱21.00'],['Markup rate','19.05%'],['Ownership','50% Enriquez / 50% Colarina'],['Biggest CAPEX item','Dutch Oven ₱1,660.00'],['Salaries (OPEX)','₱12,000.00'],['Materials (OPEX)','₱16,072.02']];
+
+const $=s=>document.querySelector(s);
+let st={tab:'script',lang:'en',part:0,mode:'study',f:'all',qi:0,show:{},t:null};
+let pr={};try{pr=JSON.parse(localStorage.getItem('dft')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('dft',JSON.stringify(pr))}catch(e){}};
+const bold=h=>h.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+const blank=h=>h.replace(/\*\*(.+?)\*\*/g,(m,t)=>`<span class="bl" tabindex="0" role="button" data-t="${t.replace(/"/g,'')}">${'_'.repeat(Math.min(t.length,10))}</span>`);
+const plain=h=>h.replace(/\*\*/g,'');
+function seg(el,items,cur,fn){el.innerHTML=items.map(([k,l])=>`<button class="${k===cur?'on':''}" data-k="${k}">${l}</button>`).join('');el.onclick=e=>{const k=e.target.dataset.k;if(k!==undefined)fn(k)}}
+function nav(){seg($('#tabs'),[['script','Scripts'],['qa','Panel Q&A'],['num','Numbers']],st.tab,k=>{st.tab=k;clearInterval(st.t);draw()});
+seg($('#langs'),[['en','English'],['tl','Taglish']],st.lang,k=>{st.lang=k;draw()})}
+function listen(txt){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang=st.lang==='en'?'en-US':'fil-PH';u.rate=.9;speechSynthesis.speak(u)}catch(e){}}
+function script(){const p=P[st.part],paras=p[st.lang];
+ let h=`<div class="bar" style="padding:0">`+P.map((x,i)=>`<button class="${i===st.part?'on':''}" data-p="${i}">${pr['s'+x.id]?'✓ ':''}${x.t}</button>`).join('')+`</div>`;
+ h+=`<div class="bar" style="padding:0"><div class="seg" id="modes"></div><span class="sp"></span><button id="listen">Listen</button><button id="done">${pr['s'+p.id]?'Marked: can recite':'I can recite this'}</button></div>`;
+ h+=`<div class="card"><h2>${p.t} <span class="mini">${p.s}</span></h2>`;
+ if(st.mode==='recite')h+=`<h3>Index card: recite from this, then check</h3><pre class="idx">${p.card}</pre><div class="row"><button id="rev">${st.show.rev?'Hide script':'Reveal script'}</button></div>`+(st.show.rev?`<div class="script" style="margin-top:14px">${paras.map(x=>`<p>${bold(x)}</p>`).join('')}</div>`:'');
+ else{h+=`<div class="script">${paras.map(x=>`<p>${st.mode==='blank'?blank(x):bold(x)}</p>`).join('')}</div>`;
+  if(st.mode==='blank')h+=`<div class="row"><button id="all">Reveal all</button><button id="hideall">Hide all</button></div><p class="mini">Tap a blank to check it. Say the missing term aloud first.</p>`;
+  else h+=`<h3 style="margin-top:14px">Index card</h3><pre class="idx">${p.card}</pre>`}
+ h+=`</div>`;$('#app').innerHTML=h;
+ seg($('#modes'),[['study','Study'],['blank','Fill the blanks'],['recite','Recite']],st.mode,k=>{st.mode=k;st.show={};script()});
+ $('#app').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{st.part=+b.dataset.p;st.show={};script()});
+ $('#listen').onclick=()=>listen(paras.map(plain).join(' '));
+ $('#done').onclick=()=>{pr['s'+p.id]=!pr['s'+p.id];save();script()};
+ const r=$('#rev');if(r)r.onclick=()=>{st.show.rev=!st.show.rev;script()};
+ const t=e=>{const b=e.target.closest('.bl');if(b){b.classList.toggle('on');b.textContent=b.classList.contains('on')?b.dataset.t:'_'.repeat(Math.min(b.dataset.t.length,10))}};
+ $('#app').onclick=t;$('#app').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){if(e.target.classList.contains('bl')){e.preventDefault();t(e)}}};
+ const sh=v=>document.querySelectorAll('.bl').forEach(b=>{b.classList.toggle('on',v);b.textContent=v?b.dataset.t:'_'.repeat(Math.min(b.dataset.t.length,10))});
+ const a=$('#all');if(a){a.onclick=()=>sh(true);$('#hideall').onclick=()=>sh(false)}}
+const FL=[['all','All questions'],['rat','Rationale'],['cx','CAPEX/OPEX'],['th','Time horizons'],['t8','Table 8'],['vb','Viability'],['grp','Group-wide']];
+const list=()=>Q.map((q,i)=>[q,i]).filter(([q])=>st.f==='all'||q[0]===st.f);
+function qa(){const L=list();if(st.qi>=L.length)st.qi=0;const [q,i]=L[st.qi];const got=Object.values(pr).filter(v=>v==='got').length;
+ let h=`<div class="bar" style="padding:0">`+FL.map(([k,l])=>`<button class="${k===st.f?'on':''}" data-f="${k}">${l}</button>`).join('')+`</div>`;
+ h+=`<div class="bar" style="padding:0"><progress max="${Q.length}" value="${got}"></progress><span class="mini" style="color:#d2b9ab">${got}/${Q.length} marked "got it"</span><span class="sp"></span><button id="rand">Random</button><button id="panel">Panel mode (45 s)</button></div>`;
+ h+=`<div class="card"><span class="tag">${FL.find(x=>x[0]===q[0])[1]}</span><span class="mini">${st.qi+1} of ${L.length}</span>${q[4]?' <span class="hard">Hard question</span>':''}<h2 style="margin-top:10px">${q[1]}</h2><div class="timer" id="tm"></div>
+ <div class="row"><button id="sa">${st.show.a?'Hide answer':'Show answer'}</button></div>`;
+ if(st.show.a)h+=`<div class="ans"><small>${st.lang==='tl'?'Taglish':'Formal English'}</small>${st.lang==='tl'?q[2]:q[3]}</div><div class="row"><button id="g">Got it</button><button id="a">Practice again</button></div>`;
+ h+=`<div class="row"><button id="pv">Previous</button><button id="nx">Next</button></div>`;
+ if(pr['q'+i])h+=`<p class="mini">Marked: ${pr['q'+i]==='got'?'got it':'practice again'}</p>`;
+ h+=`</div>`;$('#app').innerHTML=h;
+ $('#app').onclick=null;$('#app').onkeydown=null;
+ document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{st.f=b.dataset.f;st.qi=0;st.show={};clearInterval(st.t);qa()});
+ $('#sa').onclick=()=>{st.show.a=!st.show.a;clearInterval(st.t);qa()};
+ const g=$('#g');if(g){g.onclick=()=>{pr['q'+i]='got';save();step(1)};$('#a').onclick=()=>{pr['q'+i]='again';save();step(1)}}
+ $('#nx').onclick=()=>step(1);$('#pv').onclick=()=>step(-1);
+ $('#rand').onclick=()=>{st.qi=Math.floor(Math.random()*L.length);st.show={};clearInterval(st.t);qa()};
+ $('#panel').onclick=()=>{const pool=L.filter(([x,j])=>pr['q'+j]!=='got');const c=(pool.length?pool:L);const pick=c[Math.floor(Math.random()*c.length)];st.qi=L.indexOf(pick);st.show={};qa();let s=45;clearInterval(st.t);const tm=$('#tm');tm.textContent='Answer aloud: '+s+' s';st.t=setInterval(()=>{s--;tm.textContent=s>0?'Answer aloud: '+s+' s':'Time. Check your answer.';if(s<=0){clearInterval(st.t);st.show.a=true;qa()}},1000)}}
+function step(d){clearInterval(st.t);const n=list().length;st.qi=(st.qi+d+n)%n;st.show={};qa()}
+function num(){$('#app').innerHTML=`<p class="mini" style="color:#d2b9ab">Tap a card to reveal the figure. Say it aloud first.</p><div class="grid">`+N.map(([l,v],i)=>`<button class="fc" data-n="${i}"><div class="l">${l}</div><div class="v" aria-live="polite">?</div></button>`).join('')+`</div>`;
+ $('#app').onclick=e=>{const b=e.target.closest('.fc');if(b){const v=b.querySelector('.v'),x=N[+b.dataset.n][1];v.textContent=v.textContent==='?'?x:'?'}};$('#app').onkeydown=null}
+function draw(){nav();({script,qa,num})[st.tab]()}
+draw();
+</script></body></html>
